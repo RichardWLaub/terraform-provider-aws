@@ -68,8 +68,9 @@ The following arguments are supported:
 
 * `bucket` - (Required) The name of the bucket to put the file in.
 * `key` - (Required) The name of the object once it is in the bucket.
-* `source` - (Required) The path to the source file being uploaded to the bucket.
-* `content` - (Required unless `source` given) The literal content being uploaded to the bucket.
+* `source` - (Required unless `content` or `content_base64` is set) The path to a source file to upload to the bucket.
+* `content` - (Required unless `source` or `content_base64` is set) Literal content to upload into the bucket.
+* `content_base64` - (Required unless `source` or `content` is set) Base64-encoded content to upload into the bucket. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
 * `acl` - (Optional) The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) to apply. Defaults to "private".
 * `cache_control` - (Optional) Specifies caching behavior along the request/reply chain Read [w3c cache_control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) for further details.
 * `content_disposition` - (Optional) Specifies presentational information for the object. Read [wc3 content_disposition](http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1) for further information.
